@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+  <div class="container">
+    <div class="page-header">
+      <h1>搜索</h1>
+    </div>
+    <p class="lead">输入关键字即可</p>
+    <form action="/search" method="post">
+      {% raw xsrf_form_html() %}
+      <div class="form-group">
+        <input type="text" class="form-control" name="q" placeholder="请输入关键字" required>
+      </div>
+      <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+  </div>
+
+
+
+{% end %}

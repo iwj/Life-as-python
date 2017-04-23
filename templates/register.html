@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+  <h2>注册帐号</h2>
+  <div>
+    <form method="post">
+      {% raw xsrf_form_html() %}
+      <p><input type="text" disabled="disabled" name="email" placeholder="邮箱" required></p>
+      <p><input type="passowrd" disabled="disabled" name="passowrd" placeholder="设置密码" required></p>
+    </form>
+  </div>
+
+
+{% end %}

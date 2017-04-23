@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="container">
+      <div><h1>{{ arg["title"] }}</h1></div>
+      <div>
+          <p>作者：{{ arg["author"] }}</p>
+          <p>时间：{{ arg["posttime"] }}</p>
+          <p>标签：{{ arg["tag"] }}</p>
+      </div>
+      <div><div>{% raw arg["text"] %}</div></div>
+    </div>
+    <div id="share-wx">
+      <p>如果觉得有用，不妨分享给大家吧。</p>
+      <p><a id="share-wx-button" onclick="openShareTip()">分享到朋友圈</a></p>
+    </div>
+    <div id="share-tip" onclick="closeShareTip()">
+      <b>点击右上角分享到朋友圈↗️</b><br>
+      <small>轻触任意地方收起本条提示</small>
+    </div>
+
+    <script>
+    //判断是否是微信内置浏览器
+      function isWeixinBrowser(){
+        var ua = navigator.userAgent.toLowerCase();
+        return (/micromessenger/.test(ua)) ;
+      }
+      var ret = isWeixinBrowser();
+      if(ret){
+        var share_dom = document.getElementById("share-wx") // 找到元素
+        share_dom.style.display = "block";          // 改变样式
+      }else{
+        //当前是非微信内置浏览器，可放置二维码，扫描分享到朋友圈
+      }
+
+      //分享到朋友圈的提示
+      function openShareTip(){
+        var share_tip = document.getElementById("share-tip");
+        share_tip.style.display = "inherit";
+      }
+
+      //关闭分享提示图层
+      function  closeShareTip(){
+        var share_tip = document.getElementById("share-tip");
+        share_tip.style.display = "none";
+      }
+    </script>
+
+{% end %}
