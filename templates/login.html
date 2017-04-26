@@ -3,23 +3,35 @@
 {% block body %}
 
   <div class="container">
-    <h2>
-      登录
-      <small>{{ info }}</small>
-    </h2>
-    <p>
-      <form method="post" action="">
-        {% raw xsrf_form_html() %}
-          <p>
-            <input type="text" name="username" placeholder="帐号" required></input>
-          </p>
-          <p>
-            <input type="password" name="password" placeholder="密码" required></input>
-          </p>
-          <p>
-            <input type="submit" value="登录">
-          </p>
-        </form>
-      </p>
+    <div class="page-header">
+      <h1>GrowtHub 登录</h1>
     </div>
+
+    <div class="row">
+       <div class="col-md-6">
+         {% if info %}
+         <div class="alert alert-danger" role="alert">{{ info }}</div>
+         {% end %}
+         <form method="post" action="">
+            {% raw xsrf_form_html() %}
+            <div class="form-group">
+              <label for="InputUsername">用户名</label>
+              <input type="text" class="form-control" name="username" placeholder="用户名">
+            </div>
+            <div class="form-group">
+              <label for="InputPassword">密码</label>
+              <input type="password" class="form-control" name="password" placeholder="密码">
+            </div>
+            <button type="submit" class="btn btn-success">登录</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="jumbotron">
+            <h1>Login Page</h1>
+            <p>...</p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+  </div>
 {% end %}

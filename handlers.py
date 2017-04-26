@@ -1,13 +1,13 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Date  : 2016-03-05
-# Author: juzi
-# E-mail: jentlewoo@gmail.com
+# Date  : 2017-03-13
+# Author: wujian
+# E-mail: yupwj@qq.com
 
 
 from views import *
 
-#就是一些路径映射配置
+#路径映射配置
 
 HANDLERS = [(r"/", IndexHandler), 
         (r"/login", LoginHandler),
@@ -19,4 +19,5 @@ HANDLERS = [(r"/", IndexHandler),
         (r"/search", SearchHandler),
         (r"/study", StudyHandler),
         (r"/discover", DiscoverHandler),
+        (r"/finance", FinanceHandler),
         ]

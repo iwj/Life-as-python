@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Date  : 2017-04-23
-# Author: juzi
-# E-mail: jentlewoo@gmail.com
+# Author: wujian
+# E-mail: yupwj@qq.com
 
 import bs4
 import requests

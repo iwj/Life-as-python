@@ -7,7 +7,12 @@
       <h1>学习资源</h1>
     </div>
     <div class="jumbotron">
-      <h1>Hello, {{ current_user }}同学!</h1>
+      <h1>Hello,
+        {% if current_user %}
+          {{ current_user }}
+        {% end %}
+        同学!
+      </h1>
       <p>欢迎来到 GrowtHub ，本站提供了丰富的学习资源。</p>
       <div class="row">
         <div class="col-md-4">
@@ -36,79 +41,33 @@
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         小提示：喜欢的课程可以添加到“我的课程”，方便学习后续的课程以及复习。</div>
     <div class="page-header">
-      <h1>热门内容</h1>
+      <h1>课程内容</h1>
     </div>
     <div class="row">
-      <div class="col-md-6">.col-md-6<hr><hr></div>
-      <div class="col-md-3">.col-md-3</div>
-      <div class="col-md-3">.col-md-3</div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">数学</h3>
+          </div>
+          <div class="panel-body">
+            {% for i in arg_math %}
+              <p> <a href="/study?id={{i['id']}}">{{ i['title'] }}</a></p>
+            {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">英语</h3>
+          </div>
+          <div class="panel-body">
+            {% for i in range(5) %}
+              <p>课程 {{ i+1 }}</p>
+            {% end %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

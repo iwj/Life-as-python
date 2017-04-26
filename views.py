@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Date  : 2016-01-18
-# Author: juzi
-# E-mail: jentlewoo@gmail.com
+# Date  : 2017-03-18
+# Author: wujian
+# E-mail: yupwj@qq.com
 
 
 import tornado.web
@@ -19,6 +19,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("user")
 
+
 class LoginHandler(BaseHandler):
     def get(self):
         if not self.current_user:
@@ -29,12 +30,13 @@ class LoginHandler(BaseHandler):
     def post(self):
         get_username = self.get_argument("username")
         get_password = self.get_argument("password")
-        sql = "select username from user where username=%s and password=%s"
+        sql = "select * from user where username=%s and password=%s"
         ret = self.db.query(sql, get_username, get_password)
         if not ret:
             self.render("login.html", info="用户名或密码错误")
         else:
             self.set_secure_cookie("user", ret[0]["username"])
+            self.set_secure_cookie("nickname", ret[0]["nickname"])
             self.redirect(self.get_argument('next', '/'))
 
 class LogoutHandler(BaseHandler):
@@ -82,7 +84,7 @@ class ReadHandler(BaseHandler):
         sql = "select * from post where id="+str(id)
         ret = self.db.query(sql)
         error_ret = {
-                "title":"文章未找到",
+                "title":"未找到",
                 "posttime":"",
                 "author":"",
                 "text":"<p>请检查网址是否有误</p><p>或者尝试搜索</p>",
@@ -92,6 +94,8 @@ class ReadHandler(BaseHandler):
             self.render("read.html", arg = ret[0])
         else:
             self.render("read.html",arg = error_ret)
+
+
 
 class HelpHandler(BaseHandler):
     def get(self,):
@@ -127,9 +131,28 @@ class SearchHandler(BaseHandler):
 
 class StudyHandler(BaseHandler):
     def get(self,):
-        self.render("study.html")
+        id = self.get_argument("id", 1)
+#TODO 若课程编号有误，跳转
+        sql = "select * from math where id=" + str(id) 
+        ret = self.db.query(sql)
+        if(ret):
+            self.render("study.html", arg=ret[0])
+        else:
+            self.write("未找到课程")
+
         
 
 class DiscoverHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self,):
-        self.render("discover.html")
+        sql_math = "select * from math order by id desc limit 5;"
+        ret_math = self.db.query(sql_math)
+        self.render("discover.html", arg_math = ret_math)
+
+
+class FinanceHandler(BaseHandler):
+    def get(self,):
+        wacai_url = "http://bbs.wacai.com/forum.php?gid=16065"
+        ret = requests.get(wacai_url).text
+        self.render("finance.html", arg = ret)
+

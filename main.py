@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Date  : 2016-01-08
-# Author: juzi
-# E-mail: jentlewoo@gmail.com
+# Date  : 2017-03-13
+# Author: wujian
+# E-mail: yupwj@qq.com
 
 
 import os.path
@@ -15,9 +15,9 @@ import torndb
 from handlers import HANDLERS
 
 define("mysql_host", default="127.0.0.1:3306")
-define("mysql_database", default="test2")
-define("mysql_user", default="")
-define("mysql_password", default="")
+define("mysql_database", default="apple")
+define("mysql_user", default="root")
+define("mysql_password", default="q12345")
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
@@ -35,5 +35,5 @@ if __name__ == "__main__":
             user = options.mysql_user, password = options.mysql_password,
             time_zone = "+8:00"
             )
-    app.listen(9000)
+    app.listen(8000)
     tornado.ioloop.IOLoop.instance().start()

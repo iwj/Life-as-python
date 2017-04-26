@@ -23,7 +23,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">GrowtHub</a>
+        <a class="navbar-brand" href="/">GrowtHub 学乎</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -31,7 +31,6 @@
           <li><a href="/">首页</a></li>
           <li><a href="/discover">学习资源</a></li>
           <li><a href="/search">搜索</a></li>
-          <li><a href="/edit">投稿</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if current_user %}
@@ -51,26 +50,17 @@
 
   <hr>
   <footer class="container">
-    <nav>
-      <a href="/">首页</a>
-      <a href="/search">搜索</a>
-      <a href="/edit">投稿</a>
-      |
-      {% if current_user %}
-      <a href="/account">{{ current_user }}</a>
-      <a href="/logout?action=1">退出</a>
-      {% else %}
-        <a href="/login">登录</a>
-        <!-- <a href="/reg">注册</a> -->
-      {% end %}
-    </nav>
     <div>
       <p>
         <a href="javascript:scroll(0,0)">返回顶部</a>
       </P>
       <p>
-        GrowtHub ♥
+        GrowtHub ♥ 随时随地学习
       </p>
+      <!-- <p>
+        感谢：<a href="http://glyphicons.com/">glyphicons 图标</a> ·
+        <a href="http://www.tornadoweb.org">Tornado 开源框架</a>
+      </p> -->
     </div>
   </footer>
   <script src="{{ static_url("js/jquery.min.js") }}" ></script>
