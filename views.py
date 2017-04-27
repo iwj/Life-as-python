@@ -19,7 +19,6 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("user")
 
-
 class LoginHandler(BaseHandler):
     def get(self):
         if not self.current_user:
@@ -52,9 +51,10 @@ class RegisterHandler(BaseHandler):
 class IndexHandler(BaseHandler):
     def get(self):
         bing_img = bing.get_bing_img()
-        sql = "select * from post order by id desc limit 10;"
-        ret = self.db.query(sql)
-        self.render("index.html", posts=ret, bing = bing_img)
+        if bing_img:
+            self.render("index.html", bing = bing_img)
+        else:
+            self.render("index.html", bing = None)
 
 class EditHandler(BaseHandler):
     @tornado.web.authenticated

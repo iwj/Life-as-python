@@ -17,7 +17,8 @@ from handlers import HANDLERS
 define("mysql_host", default="127.0.0.1:3306")
 define("mysql_database", default="apple")
 define("mysql_user", default="root")
-define("mysql_password", default="q12345")
+define("mysql_password", default="")
+define("port", default="8000")
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
@@ -35,5 +36,5 @@ if __name__ == "__main__":
             user = options.mysql_user, password = options.mysql_password,
             time_zone = "+8:00"
             )
-    app.listen(8000)
+    app.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()

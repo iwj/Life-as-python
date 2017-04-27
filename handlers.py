@@ -12,7 +12,7 @@ from views import *
 HANDLERS = [(r"/", IndexHandler), 
         (r"/login", LoginHandler),
         (r"/edit", EditHandler), 
-        (r"/read", ReadHandler), (r"/help", HelpHandler),
+        (r"/help", HelpHandler),
         (r"/logout", LogoutHandler),
         (r"/reg", RegisterHandler),
         (r"/account", AccountHandler),

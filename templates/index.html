@@ -2,7 +2,7 @@
 
 {% block body %}
 
-  <div class="jumbotron bing-bg" style="background-image: url({{ bing }})">
+<div class="jumbotron bing-bg" style="background-image: url({% if bing %} {{bing}} {% end %} )">
     <div class="container">
       <h1>GrowtHub，<br>随时随地给自己充电。</h1>
       <p>大学公开课</p>
