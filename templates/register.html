@@ -2,14 +2,68 @@
 
 {% block body %}
 
-  <h2>注册帐号</h2>
-  <div>
-    <form method="post">
-      {% raw xsrf_form_html() %}
-      <p><input type="text" disabled="disabled" name="email" placeholder="邮箱" required></p>
-      <p><input type="passowrd" disabled="disabled" name="passowrd" placeholder="设置密码" required></p>
-    </form>
-  </div>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="text-center">注册帐号</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        {% if status_code !=0 %}
 
+          <div class="alert alert-danger" role="alert">
+            {% if status_code ==-1 %}
+            邮箱已经注册过，请直接登录，或换个邮箱注册
+            <!-- 找回密码 -->
+            {% end %}
+            {% if status_code ==-2 %}
+            用户名已经存在，请换个用户名
+            <!-- 找回密码 -->
+            {% end %}
+          </div>
+
+        {% end %}
+        <form method="post" class="form-horizontal" action="/reg">
+          {% raw xsrf_form_html() %}
+            <div class="form-group">
+              <label class="col-sm-2 control-label">用户名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="
+                {% if status_code == -1 %}
+                {{ input_username }}
+                {% end %}
+                "name="username" placeholder="好记易于辨识" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" name="password" placeholder="大于6位，使用字母、数字、符号组合的形式" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">邮箱</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="
+                {% if status_code == -2 %}
+                {{ input_email }}
+                {% end %}
+                " name="email" placeholder="请输入常用的邮箱，方便找回密码" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">注册</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <a href="/login">已经有账号，直接登录 ></a>
+              </div>
+            </div>
+          </form>
+
+      </div>
+    </div>
+  </div>
 
 {% end %}

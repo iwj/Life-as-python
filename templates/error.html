@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+  <div class="container">
+    <h1>遇到了错误</h1>
+      <div class="alert alert-danger" role="alert">
+        {% if error_code==1 %}
+          未找到课程，请检查课程编号是否有误。
+        {% end %}
+      </div>
+      <p>你来到了没有知识的荒原：</p>
+      <p><a href="/">返回首页</a></p>
+      <p><a href="/discover">寻找课程</a></p>
+    </div>
+
+{% end %}

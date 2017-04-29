@@ -8,7 +8,7 @@ create database 库名(tesla);
 use 库名（tesla）;
 show variables like'%char%';
 
-### 2 设置
+### 2 设置（临时）
 set character_set_****=utf8;  (****为对应的名)
 
 ### 3 完成后再建库、建表
@@ -42,7 +42,9 @@ PRIMARY KEY (id)
 alter table user auto_increment=1000;
 
 注册时间在后端实现：
-insert into user(username, password, nickname, email, regtime) values("wj", "123", "特斯拉", "wujian@github.com", curtime());
+insert into user(username, password, nickname, email, regtime) values("wj", "123", "特斯拉", "wujian@github.com", now());
+不得不写一句，curtime()
+
 
 
 用户表：

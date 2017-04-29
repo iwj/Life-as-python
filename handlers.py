@@ -20,4 +20,5 @@ HANDLERS = [(r"/", IndexHandler),
         (r"/study", StudyHandler),
         (r"/discover", DiscoverHandler),
         (r"/finance", FinanceHandler),
+        (r"/error", ErrorHandler),
         ]

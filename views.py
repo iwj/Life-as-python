@@ -20,9 +20,17 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.get_secure_cookie("user")
 
 class LoginHandler(BaseHandler):
+    """
+    登录模块
+
+    状态码：
+    0   首次进登录页面
+    1   注册成功的用户跳转过来
+    -1  用户名或密码有误
+    """
     def get(self):
         if not self.current_user:
-            self.render("login.html", info="")
+            self.render("login.html", status_code = 0)
         else:
             self.redirect("/");
 
@@ -32,7 +40,7 @@ class LoginHandler(BaseHandler):
         sql = "select * from user where username=%s and password=%s"
         ret = self.db.query(sql, get_username, get_password)
         if not ret:
-            self.render("login.html", info="用户名或密码错误")
+            self.render("login.html", status_code = -1)
         else:
             self.set_secure_cookie("user", ret[0]["username"])
             self.set_secure_cookie("nickname", ret[0]["nickname"])
@@ -45,8 +53,49 @@ class LogoutHandler(BaseHandler):
             self.redirect("/")
 
 class RegisterHandler(BaseHandler):
+    """
+    注册模块
+
+    状态码：
+    0   首次进入注册页面
+    1   注册成功
+    -1  邮箱已经注册过（存在）
+    -2  用户名已经注册过（存在）
+    """
     def get(self):
-        self.render("register.html")
+        self.render("register.html", status_code=0)
+    def post(self):
+        get_username = self.get_argument("username")
+        get_password = self.get_argument("password")
+        get_email = self.get_argument("email")
+        sql_check_username = "select * from user where username = %s"
+        sql_check_email = "select  * from user where email = %s"
+        ret_check_username = self.db.query(sql_check_username, get_username)
+        ret_check_email = self.db.query(sql_check_email, get_email)
+        if ret_check_email:
+            self.render(
+                    "register.html",
+                    status_code=-1,
+                    input_username = get_username,
+                    )
+        elif ret_check_username:
+            self.render(
+                    "register.html",
+                    status_code=-2,
+                    input_email = get_email,
+                    )
+        else:
+            nick_end = time.time()
+            nick_end = (str(nick_end)).split(".")[0]
+            sql_register = "insert into user(username, password, nickname,"+\
+            " email, regtime) values('%s', '%s', '%s', '%s', now());" % \
+                    (get_username, get_password, u"用户"+nick_end, get_email)
+            ret_register = self.db.execute(sql_register)
+            if ret_register:
+                self.render("login.html", status_code = 1)
+            else:
+                self.write("注册失败！！！")
+
 
 class IndexHandler(BaseHandler):
     def get(self):
@@ -132,14 +181,23 @@ class SearchHandler(BaseHandler):
 class StudyHandler(BaseHandler):
     def get(self,):
         id = self.get_argument("id", 1)
-#TODO 若课程编号有误，跳转
         sql = "select * from math where id=" + str(id) 
-        ret = self.db.query(sql)
-        if(ret):
-            self.render("study.html", arg=ret[0])
+        ret_main_lesson = self.db.query(sql)
+        sql = "select * from math order by id desc limit 10;"
+        ret_link_lesson = self.db.query(sql)
+        if(ret_main_lesson and ret_link_lesson):
+            self.render(
+                    "study.html",
+                    arg_main=ret_main_lesson[0],
+                    arg_link=ret_link_lesson,
+                    status_code=1,
+                    )
         else:
-            self.write("未找到课程")
+            self.render("study.html", status_code=0)
 
+class ErrorHandler(BaseHandler):
+    def get(self):
+        self.render("error.html", error_code=1)
         
 
 class DiscoverHandler(BaseHandler):
