@@ -9,7 +9,11 @@ import requests
 import json
 
 def get_source(url):
-    ret = requests.get(url).text
+    try:
+        ret = requests.get(url).text
+    except Exception ,e:
+        print e
+        return False
     if ret:
         return ret
     else:

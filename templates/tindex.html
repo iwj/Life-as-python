@@ -1,0 +1,64 @@
+{% extends "tbase.html" %}
+
+{% block body %}
+
+<div class="jumbotron t-bg">
+  <div class="container">
+    <h1 class="text-center">Tensor | 学乎后台管理系统 </h1>
+    <p class="text-center">发布课程、教师入驻</p>
+    <p class="text-center">管理课程、管理学生</p>
+    <p class="text-center">为人类知识传播做出贡献</p>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">上一周学习量</h3>
+          </div>
+          <div class="panel-body">
+            {% for i in range(6) %}
+            课程{{ i }}<hr>
+            {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">上一周排序</h3>
+          </div>
+          <div class="panel-body">
+            {% for i in range(6) %}
+            课程{{ i }}<hr>
+            {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+    <!-- Default panel contents -->
+          <div class="panel-heading">新增学生</div>
+          <div class="panel-body">
+            <p>...</p>
+          </div>
+
+          <!-- Table -->
+          <table class="table">
+            ...
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="container">
+      <div class="page-header">
+        <h1>我的课程</h1>
+      </div>
+      {% for i in range(9) %}
+      {{ i }}<br>
+      {% end %}
+    <hr>
+    </div>
+
+
+{% end %}

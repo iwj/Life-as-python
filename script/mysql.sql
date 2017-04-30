@@ -89,3 +89,20 @@ PRIMARY KEY (id)
 alter table math auto_increment=10000;
 
 insert into math(title, info, url, tag) values("数学基础课2", "适合初中学生观看，语言为英语。", "http://7xshru.com1.z0.glb.clouddn.com/video/2.mp4", "数学");
+
+# Tensor Part
+
+## user table
+
+create table tuser(
+id int not NULL auto_increment,
+username varchar(32) not NULL,
+password varchar(16) not NULL,
+email varchar(32) not NULL,
+regtime datetime not NULL,
+PRIMARY KEY (id)
+);
+alter table post auto_increment=9000;
+
+测试
+insert into tuser(username, password, email, regtime) values("wj", "123", "wujian@github.com", now());

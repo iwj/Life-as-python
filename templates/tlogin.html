@@ -1,0 +1,140 @@
+{% extends "tbase.html" %}
+
+{% block body %}
+
+  {% block nav %}
+  {% end %}
+<div class="jumbotron t-bg">
+  <div class="container">
+    <h1 class="text-center">Tensor | 学乎后台管理系统 </h1>
+    <p class="text-center">发布课程、教师入驻</p>
+    <p class="text-center">管理课程、管理学生</p>
+    <p class="text-center">为人类知识传播做出贡献</p>
+    <div class="row">
+      <div class="col-md-3 t-login-frame">
+        <div class="page-header">
+          <p class="text-center">管理员 / 教师登录</p>
+        </div>
+         {% if status_code == -1 %}
+         <div class="alert alert-danger" role="alert">用户名或密码有误，请检查。</div>
+         {% end %}
+         {% if status_code == 1 %}
+         <div class="alert alert-success" role="alert">注册完成</div>
+         {% end %}
+         <form method="post" action="/tensor/login">
+            {% raw xsrf_form_html() %}
+            <div class="form-group">
+              <label>用户名</label>
+              <input type="text" class="form-control" name="t_username" placeholder="用户名">
+            </div>
+            <div class="form-group">
+              <label>密码</label>
+              <input type="password" class="form-control" name="t_password" placeholder="密码">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">登录</button>
+            </div>
+            <div class="form-group">
+              <a href="#">教师入驻，点此申请 ></a>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="alert alert-info" role="alert">
+      <p class="text">
+        欢迎教师入驻,如果你有一技之长，乐意分享，欢迎来学乎授课，将知识和技能传授给更多的人。
+        只需3步：
+        注册账号
+        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        发布课程
+        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+        桃李满天下
+      </p>
+    </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1 class="text-center">课程案例</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="show-lesson">
+        <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh1.jpg">
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h3 class="text-primary">可汗学院公开课 | 算术与代数预备课程：乘法与除法</h3>
+      <p>本课程共26集 翻译完 欢迎学习</p>
+      <p class="text-primary">课程介绍</p>
+      <p>可汗学院的算术与代数预备课程是真正从零开始学习数学的起始点，是代数课程的先导课。
+        对于那些想从最基础开始学习数学，或者以后想要学习代数1课程的同学来说，本课程刚好适合你。
+        内容包括：乘法与除法，正数和负数的乘除法，位值等。</p>
+      <p>[第1集] 基本乘法</p>
+      <p>[第2集] 乘法表</p>
+      <p>[第3集] 10 11 12的乘法表</p>
+      <p>[第4集] 除法1</p>
+      <p>[第5集] 除法2</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-7">
+      <h3 class="text-primary">可汗学院公开课：计算数论</h3>
+      <p>本课程共10集 翻译完 欢迎学习</p>
+      <p class="text-primary">课程介绍</p>
+      <p>这部分课程的主讲人以美国国家航空航天局(NASA)所发射的新火星探测器及相关程序为背景，
+        讲解了信息如何传播、如何加密以及相关问题。
+        这就自然而然地引出了应用数学这部分所包括三个内容：
+        一是信息论、二是密码学、三是计算数论。信息论是关于信息的理论，而信息的传播又离不开加密，
+        加密的主要方法目前又是通过数论、质数这方面的知识来实现，
+        这三部分内容有机地结合起来形成应用数学这部分内容。</p>
+      <p>[第1集] 质数判定</p>
+      <p>[第2集] 运行时间</p>
+      <p>[第3集] 计算存储空间</p>
+    </div>
+    <div class="col-md-5">
+      <div class="show-lesson">
+        <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh2.jpg">
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="show-lesson">
+        <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh3.jpg">
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h3 class="text-primary">可汗学院公开课：有机化学</h3>
+      <p>本课程共73集 翻译完 欢迎学习</p>
+      <p class="text-primary">课程介绍</p>
+      <p>首先，重点突出，非重点的繁杂内容很多都省去了，其次是讲法更为简单好理解，
+        并非是一打开就让人头晕目眩的复杂。另外，讲课的顺序和很多国内的教材略有不同。
+        本课程是先讲机理，再运用机理理解有机物的反应，而不是将化合物分类中间掺插机理，
+        笔者认为本课程的讲法更有利理解记忆。</p>
+      <p>[第1集] 有机分子的结构表达</p>
+      <p>[第2集] 简单烷烃的命名</p>
+      <p>[第3集] 带烷基的烷烃的命名</p>
+      <p>[第4集] 更正：2-丙基庚烷不叫这个名字！</p>
+      <p>[第5集] 异、仲、叔碳支链的习惯命名和系统命名</p>
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+
+
+
+{% end %}

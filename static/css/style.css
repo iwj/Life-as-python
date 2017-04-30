@@ -6,55 +6,8 @@ body {
 
 .bing-bg {
   background-size: cover;
-  background: url(http://cn.bing.com/az/hprichbg/rb/WallaceHut_ZH-CN12470084939_1920x1080.jpg) right bottom no-repeat;
+  background-image: url(http://cn.bing.com/az/hprichbg/rb/WallaceHut_ZH-CN12470084939_1920x1080.jpg);
+  background-repeat: no-repeat;
   text-shadow: 1px 1px 1px #000;
   color: #fff;
-}
-
-/*.navbar-wj {
-  background-color: #fff;
-  border-bottom: 1px solid rgba(30,35,42,.06);
-  box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
-  background-clip: content-box;
-}*/
-
-
-/* read: share WX */
-#share-wx {
-  display: none;
-  border-top: 1px dotted #333;
-}
-
-#share-wx-button {
-  color: #FFF;
-  border: 2px solid #4caf50;
-  padding: 10px 20px;
-  border-radius: 5px;
-  display: block;
-  background: #1aad19;
-  text-align: center;
-  text-decoration: none;
-}
-#share-wx-button:active {
-  color: #a2d7a2;
-  border: 2px solid #179b16;
-  padding: 10px 20px;
-  border-radius: 5px;
-  display: block;
-  background: #179b16;
-  text-align: center;
-  text-decoration: none;
-}
-
-#share-tip{
-  position: fixed;
-  display:none;
-  right: 0px;
-  top: 0px;
-  padding: 10px 40px;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  text-align: right;
-  background: rgba(51, 51, 51, 0.8);
 }

@@ -16,13 +16,17 @@ def get_bing_img():
     if result:
         try:
             result_dict = json.loads(result)
-        except ValueError, e:
+        except Exception, e:
+            print e
             return False
     else:
         result_dict = None
-    img_url = result_dict.get("images")[0].get("url")
-    img_url = "http://cn.bing.com" + img_url
-    file_name = img_url.split("/")[-1]
+    if result_dict:
+        img_url = result_dict.get("images")[0].get("url")
+        img_url = "http://cn.bing.com" + img_url
+        file_name = img_url.split("/")[-1]
+    else:
+        img_url = None
     if img_url:
         return img_url
     else:
