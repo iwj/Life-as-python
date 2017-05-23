@@ -90,7 +90,35 @@ alter table math auto_increment=10000;
 
 insert into math(title, info, url, tag) values("数学基础课2", "适合初中学生观看，语言为英语。", "http://7xshru.com1.z0.glb.clouddn.com/video/2.mp4", "数学");
 
-# Tensor Part
+## lesson-library 课程列表
+
+create table lesson(!已废弃
+id int not NULL auto_increment,
+name varchar(32) not NULL,
+cnname varchar(64) not NULL,
+coverurl varchar(256) not NUll,
+PRIMARY KEY (id)
+);
+
+alter table lesson auto_increment=10000;
+
+insert into lesson(name, cnname, coverurl) values("math", "数学", "http://7xshru.com1.z0.glb.clouddn.com/t/kh1.jpg");
+
+
+## 已选课程
+
+create table record(
+id int not NULL auto_increment,
+userid int not NULL,
+lessonid int not NULL,
+add_date datetime not NULL,
+PRIMARY KEY (id)
+);
+
+insert into record(userid, lessonid, add_date) values(1011, 10000, now());
+
+
+# Tensor Part 管理员账户
 
 ## user table
 
@@ -106,3 +134,39 @@ alter table post auto_increment=9000;
 
 测试
 insert into tuser(username, password, email, regtime) values("wj", "123", "wujian@github.com", now());
+
+## May 23 课程（大课程）表
+
+create table lesson(
+id int not NULL auto_increment,
+name varchar(32) not NULL,
+cnname varchar(64) not NULL,
+teacherid int not NULL,
+coverurl varchar(256) not NUll,
+PRIMARY KEY (id)
+);
+
+alter table lesson auto_increment=10000;
+
+insert into lesson(name, cnname, teacherid, coverurl) values("math", "数学", 1,"http://7xshru.com1.z0.glb.clouddn.com/t/kh1.jpg");
+
+## 详细的class表
+create table class(
+id int not NULL auto_increment,
+title
+)
+
+create table class(
+id int not NULL auto_increment,
+lesson_id int not NULL,
+title varchar(128) not NULL,
+info varchar(256) not NULL,
+url varchar(256) not NUll,
+tag varchar(16) not NULL,
+PRIMARY KEY (id)
+);
+
+alter table lesson auto_increment=10000;
+
+insert into class(lesson_id, title, info, url, tag) values("10000", "数学基础课2", "适合初中学生观看，语言为英语。", "http://7xshru.com1.z0.glb.clouddn.com/video/2.mp4", "数学");
+

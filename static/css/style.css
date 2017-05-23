@@ -11,3 +11,21 @@ body {
   text-shadow: 1px 1px 1px #000;
   color: #fff;
 }
+
+.show-lesson img{
+  width: 100%;
+}
+
+.flat-card {
+  background-color: #ecf0f5;
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.flat-image {
+  margin: 31px 0 27px;
+  max-width: 100%;
+  max-height: 200px;
+}

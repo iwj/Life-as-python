@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="jumbotron bing-bg" style="background-image: url({% if bing %} {{bing}} {% end %} )">
+<div class="jumbotron bing-bg" style="background-image: url( {{ static_url("image/bgrealwork.jpg")}} )">
     <div class="container">
       <h1>GrowtHub，<br>随时随地给自己充电。</h1>
       <p>大学公开课</p>
@@ -12,20 +12,44 @@
       <p>生活兴趣</p>
       <p>外语学习</p>
       <p>乐器</p>
-      <p><a class="btn btn-success btn-lg" href="#try" role="button">开始试学！</a></p>
+      <p><a class="btn btn-success btn-lg" href="#moreinfo" role="button">了解更多</a></p>
     </div>
   </div>
 
-
-
   <div class="container">
-    <div id="try"></div>
-    <div class="alert alert-danger" role="alert">
-      <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-      使用本站的完整功能需要登录。
+    <div id="moreinfo"></div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="flat-card ">
+          <img class="flat-image" alt="" src="{{ static_url("image/infinity.png") }}">
+          <h3>基础学科</h3>
+          <p>可汗学院公开课，以全新的思维学习基础课</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="flat-card ">
+          <img class="flat-image" alt="" src="{{ static_url("image/html-icon.png") }}">
+          <h3>专业技能</h3>
+          <p>扩充技能树，帮助你在职业道路上更好前行</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="flat-card ">
+          <img class="flat-image" alt="" src="{{ static_url("image/colors.png") }}">
+          <h3>艺术与运动</h3>
+          <p>学会一种乐器，坚持运动，不断地提升自我</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="flat-card ">
+          <img class="flat-image" alt="" src="{{ static_url("image/gift.png") }}">
+          <h3>兴趣爱好</h3>
+          <p>鼓励你培养每一个小爱好，花时间与灵魂对话</p>
+        </div>
+      </div>
     </div>
     <div class="page-header">
-      <h1>课程试听</h1>
+      <h1 class="text-center">课程试听</h1>
     </div>
     <div class="row">
       <div class="col-md-9">
@@ -50,61 +74,87 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>本站概览</h1>
+      <h1 class="text-center">课程案例</h1>
     </div>
+
     <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">大学公开课</h3>
-          </div>
-          <div class="panel-body">
-            各大名校的公开课，有国内的也有国外的。还在为课程太难而烦恼吗，
-            本站为你提供各学科的公开课，哪门课有欠缺，就学哪门。
-          </div>
+      <div class="col-md-5">
+        <div class="show-lesson">
+          <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh1.jpg">
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">乐器</h3>
-          </div>
-          <div class="panel-body">
-            各大名校的公开课，有国内的也有国外的。还在为课程太难而烦恼吗，
-            本站为你提供各学科的公开课，哪门课有欠缺，就学哪门。
-          </div>
-        </div>
+      <div class="col-md-7">
+        <h3 class="text-primary">可汗学院公开课 | 算术与代数预备课程：乘法与除法</h3>
+        <p>本课程共26集 翻译完 欢迎学习</p>
+        <p class="text-primary">课程介绍</p>
+        <p>可汗学院的算术与代数预备课程是真正从零开始学习数学的起始点，是代数课程的先导课。
+          对于那些想从最基础开始学习数学，或者以后想要学习代数1课程的同学来说，本课程刚好适合你。
+          内容包括：乘法与除法，正数和负数的乘除法，位值等。</p>
+        <p>[第1集] 基本乘法</p>
+        <p>[第2集] 乘法表</p>
+        <p>[第3集] 10 11 12的乘法表</p>
+        <p>[第4集] 除法1</p>
+        <p>[第5集] 除法2</p>
       </div>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">理财投资</h3>
-          </div>
-          <div class="panel-body">
-            各大名校的公开课，有国内的也有国外的。还在为课程太难而烦恼吗，
-            本站为你提供各学科的公开课，哪门课有欠缺，就学哪门。
-          </div>
-        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-7">
+        <h3 class="text-primary">可汗学院公开课：计算数论</h3>
+        <p>本课程共10集 翻译完 欢迎学习</p>
+        <p class="text-primary">课程介绍</p>
+        <p>这部分课程的主讲人以美国国家航空航天局(NASA)所发射的新火星探测器及相关程序为背景，
+          讲解了信息如何传播、如何加密以及相关问题。
+          这就自然而然地引出了应用数学这部分所包括三个内容：
+          一是信息论、二是密码学、三是计算数论。信息论是关于信息的理论，而信息的传播又离不开加密，
+          加密的主要方法目前又是通过数论、质数这方面的知识来实现，
+          这三部分内容有机地结合起来形成应用数学这部分内容。</p>
+        <p>[第1集] 质数判定</p>
+        <p>[第2集] 运行时间</p>
+        <p>[第3集] 计算存储空间</p>
       </div>
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">职业资格</h3>
-          </div>
-          <div class="panel-body">
-            各大名校的公开课，有国内的也有国外的。还在为课程太难而烦恼吗，
-            本站为你提供各学科的公开课，哪门课有欠缺，就学哪门。
-          </div>
+      <div class="col-md-5">
+        <div class="show-lesson">
+          <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh2.jpg">
         </div>
       </div>
     </div>
 
-    <div class="panel panel-primary">
-      <div class="panel-heading">让学习变得简单</div>
-      <div class="panel-body">
-        注册仅需1分钟。
+    <hr>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="show-lesson">
+          <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh3.jpg">
+        </div>
+      </div>
+      <div class="col-md-7">
+        <h3 class="text-primary">可汗学院公开课：有机化学</h3>
+        <p>本课程共73集 翻译完 欢迎学习</p>
+        <p class="text-primary">课程介绍</p>
+        <p>首先，重点突出，非重点的繁杂内容很多都省去了，其次是讲法更为简单好理解，
+          并非是一打开就让人头晕目眩的复杂。另外，讲课的顺序和很多国内的教材略有不同。
+          本课程是先讲机理，再运用机理理解有机物的反应，而不是将化合物分类中间掺插机理，
+          笔者认为本课程的讲法更有利理解记忆。</p>
+        <p>[第1集] 有机分子的结构表达</p>
+        <p>[第2集] 简单烷烃的命名</p>
+        <p>[第3集] 带烷基的烷烃的命名</p>
+        <p>[第4集] 更正：2-丙基庚烷不叫这个名字！</p>
+        <p>[第5集] 异、仲、叔碳支链的习惯命名和系统命名</p>
       </div>
     </div>
+
+    <hr>
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+      使用本站的完整功能需要登录。
+    </div>
+    <p class="text-center lead">
+      <a href="/reg">注册</a> 或 <a href="/login">登录</a>，开始学习之旅。
+    </p>
+
   </div>
 
 {% end %}

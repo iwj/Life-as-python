@@ -61,9 +61,14 @@ class RegisterHandler(BaseHandler):
     1   注册成功
     -1  邮箱已经注册过（存在）
     -2  用户名已经注册过（存在）
+    -3  已经有用户登录
     """
     def get(self):
-        self.render("register.html", status_code=0)
+        if self.current_user:
+            #self.render("register.html", status_code=-3)
+            self.redirect("/account")
+        else:
+            self.render("register.html", status_code=0)
     def post(self):
         get_username = self.get_argument("username")
         get_password = self.get_argument("password")
@@ -94,16 +99,17 @@ class RegisterHandler(BaseHandler):
             if ret_register:
                 self.render("login.html", status_code = 1)
             else:
-                self.write("注册失败！！！")
+                self.write("注册失败")
 
 
 class IndexHandler(BaseHandler):
     def get(self):
-        bing_img = bing.get_bing_img()
-        if bing_img:
-            self.render("index.html", bing = bing_img)
-        else:
-            self.render("index.html", bing = None)
+        #bing_img = bing.get_bing_img()
+        self.render("index.html")
+
+class AddlessonHandler(BaseHandler):
+    def post(self,):
+        lesson_id = self.get_argument("lesson_id")
 
 class EditHandler(BaseHandler):
     @tornado.web.authenticated
@@ -153,10 +159,30 @@ class HelpHandler(BaseHandler):
 class AccountHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self,):
-        sql = "select * from user where username='"+str(self.current_user)+"'"
-        ret = self.db.query(sql)
-        if(ret):
-            self.render("account.html", arg = ret[0])
+        lesson_info_flag = True
+        sql_user = "select * from user where username='"+\
+                str(self.current_user)+"'"
+        ret_user = self.db.query(sql_user)
+        sql_lesson_id = "select * from record where userid="+\
+                str(ret_user[0]['id'])+""
+        ret_lesson_id = self.db.query(sql_lesson_id)
+        if(ret_lesson_id):
+            sql_lesson_info = "select * from lesson where id="+\
+                    str(ret_lesson_id[0]['lessonid'])+""
+            ret_lesson_info = self.db.query(sql_lesson_info)
+        else:
+            ret_lesson_info = [{"info": "Null"}]
+            lesson_info_flag = False
+
+        if(ret_user and ret_lesson_info):
+            self.render(
+                    "account.html",
+                    arg_user = ret_user[0],
+                    arg_lesson = ret_lesson_info,
+                    lesson_info_flag = lesson_info_flag,
+                    )
+        else:
+            self.write("Erroe: Query user info faild.")
 
 
 class SearchHandler(BaseHandler):

@@ -6,7 +6,6 @@
 
 
 from views import *
-from tviews import *
 
 #路径映射配置
 
@@ -23,6 +22,4 @@ HANDLERS = [
         (r"/discover", DiscoverHandler),
         (r"/finance", FinanceHandler),
         (r"/error", ErrorHandler),
-        (r"/tensor/login", T_LoginHandler),
-        (r"/tensor", T_IndexHandler),
         ]

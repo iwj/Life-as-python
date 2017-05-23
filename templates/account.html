@@ -4,13 +4,28 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>用户中心</h1>
+      <h1>用户信息</h1>
     </div>
-    <p>用户名：{{ arg["username"] }}</p>
-    <p>邮箱：{{ arg["email"] }}</p>
-    <p>昵称：{{ arg["nickname"] }}</p>
-    <p>注册时间：{{ arg["regtime"] }}</p>
-    <p>数字ID：{{ arg["id"] }}</p>
+    <p>用户名：{{ arg_user["username"] }}</p>
+    <p>邮箱：{{ arg_user["email"] }}</p>
+    <p>昵称：{{ arg_user["nickname"] }}</p>
+    <p>注册时间：{{ arg_user["regtime"] }}</p>
+    <p>数字ID：{{ arg_user["id"] }}</p>
+    <div class="page-header">
+      <h1>已选课程</h1>
+    </div>
+    {% if lesson_info_flag %}
+    <div class="row">
+      <div class="col-md-3">
+      {% for lesson in arg_lesson %}
+        <p class="text-primary">{{ lesson["cnname"] }}</p>
+        <img src="{{ lesson["coverurl"] }}" alt="..." class="img-thumbnail">
+      {% end %}
+      </div>
+    </div>
+    {% else %}
+    暂无课程，快去选课吧。
+    {% end %}
   </div>
 
 {% end %}

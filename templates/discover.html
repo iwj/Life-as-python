@@ -55,6 +55,11 @@
             {% end %}
           </div>
         </div>
+        <form method="post" action="/addlesson">
+          {% raw xsrf_form_html() %}
+          选课
+          <input type="hidden" name="lesson">
+        </form>
       </div>
       <div class="col-md-3">
         <div class="panel panel-primary">
