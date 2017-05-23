@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#337ab7">
+  <link rel="shortcut icon" href="{{ static_url("favicon.png") }}" type="image/png" />
+  <link rel="icon" href="{{ static_url("favicon.png") }}" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url("css/bootstrap.min.css") }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ static_url("css/tstyle.css") }}"/>
+  <title>{% block title %}课程资源管理{% end %}</title>
+  {% block head %}{% end %}
+</head>
+  <body>
+    {% block nav %}
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">后台管理</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/tmain">首页</a></li>
+            <li><a href="/tlesson">课程管理</a></li>
+            <li><a href="/tstudent">学生管理</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if current_user %}
+              <li><a href="/taccount"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ current_user }}</a></li>
+              <li><a href="/tlogout?action=1"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 退出</a></li>
+            </li>
+            {% else %}
+              <li><a href="/tlogin">登录</a></li>
+              <li><a href="#">注册</a></li>
+            {% end %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- container -->
+    </nav>
+    {% end %}
+    {% block body %}{% end %}
+    <footer class="t_footer">
+      <div class="container">
+        <p class="text-center">Tensor | 学乎后台管理系统</p>
+        <p class="text-center">© 学乎，随时随地学习。</p>
+      </div>
+    </footer>
+    <script src="{{ static_url("js/jquery.min.js") }}" ></script>
+    <script src="{{ static_url("js/bootstrap.min.js") }}" ></script>
+  </body>
+</html>

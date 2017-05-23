@@ -1,0 +1,50 @@
+{% extends "tbase.html" %}
+
+{% block body %}
+
+<div class="jumbotron t-bg">
+  <div class="container">
+    <h1 class="text-center">Tensor | 学乎后台管理系统 </h1>
+    <p class="text-center">发布课程、教师入驻</p>
+    <p class="text-center">管理课程、管理学生</p>
+    <p class="text-center">为人类知识传播做出贡献</p>
+  </div>
+</div>
+    <div class="container">
+      <div class="page-header">
+        <h1>控制面板</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">我的课程</h3>
+            </div>
+            <div class="panel-body">
+              课程总数：XX<hr>
+              课程节数：XX<hr>
+              精品课程：XX<hr>
+              <a class="btn btn-default" href="/tadd" role="button">添加课程</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default">
+      <!-- Default panel contents -->
+            <div class="panel-heading">我的学生</div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          col-mod-3
+        </div>
+
+      </div>
+    <br>
+    </div>
+
+{% end %}

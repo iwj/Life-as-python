@@ -1,0 +1,41 @@
+{% extends "tbase.html" %}
+
+{% block body %}
+
+  <div class="jumbotron t-bg">
+    <div class="container">
+      <h1 class="text-center">Tensor | 学乎后台管理系统 </h1>
+      <p class="text-center">发布课程、教师入驻</p>
+      <p class="text-center">管理课程、管理学生</p>
+      <p class="text-center">为人类知识传播做出贡献</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="page-header">
+      <h1>添加课程</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+      <form method="post" action="">
+         {% raw xsrf_form_html() %}
+         <div class="form-group">
+           <label>课程名</label>
+           <input type="text" class="form-control" name="cnname" placeholder="课程正式中文名称">
+         </div>
+         <div class="form-group">
+           <label>课程代号</label>
+           <input type="text" class="form-control" name="name" placeholder="课程英文代号">
+         </div>
+         <div class="form-group">
+           <label>课程封面</label>
+           <input type="text" class="form-control" name="coverurl" placeholder="图像URL">
+         </div>
+         <div class="form-group">
+           <button type="submit" class="btn btn-primary">提交</button>
+         </div>
+       </form>
+       </div>
+    </div>    <!-- row end -->
+  </div>
+
+{% end %}

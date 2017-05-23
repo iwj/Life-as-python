@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.t-bg {
+  margin-top: -50px;
+  background-size: cover;
+  background-image: url(http://7xshru.com1.z0.glb.clouddn.com/img/AfricaWeaverbirds_ZH-CN9479498858_1920x1080.jpg);
+  background-repeat: no-repeat;
+  text-shadow: 1px 1px 1px #000;
+  color: #fff;
+}
+
+.t-login-frame {
+  background-color: #eee;
+  text-shadow: none;
+  color: #000;
+  border-radius: 3px;
+}
+
+
+.show-lesson img{
+  width: 100%;
+}
+
+.t_footer {
+  padding-top: 20px;
+  min-height: 100px;
+  background-color: #3C4142;
+  color: #999;
+}
+
+.tshow-img {
+  min-width: 100%;
+}

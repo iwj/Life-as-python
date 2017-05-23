@@ -1,0 +1,99 @@
+{% extends "tbase.html" %}
+
+{% block body %}
+
+
+
+   <div class="container">
+     <div class="page-header">
+       <h1>我的课程预览</h1>
+     </div>
+   </div>
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        {% if arg_lesson %}
+        <div class="col-md-6">
+          <img src="{{ arg_lesson[0]['coverurl'] }}" class="tshow-img">
+        </div>
+        <div class="col-md-6">
+          <h2>{{ arg_lesson[0]['cnname'] }}
+            <small>{{ arg_lesson[0]['name'] }}</small>
+          </h2>
+          <p>课程编号：{{ arg_lesson[0]['id'] }}</p>
+          <p class="text-primary">课程介绍</p>
+          <p>可汗学院(Khan Academy)，是由孟加拉裔美国人萨尔曼·可汗创立的一家教育性非营利组织，
+            主旨在于利用网络影片进行免费授课，
+            现有关于数学、历史、金融、物理、化学、生物、天文学等科目的内容，
+            教学影片超过2000段，机构的使命是加快各年龄学生的学习速度。</p>
+        </div>
+        {% else %}
+        <h1>未找到课程</h1>
+          <p>课程不存在，<br>请检查该课程编号</p>
+        {% end %}
+      </div>
+    </div>    <!-- container end -->
+  </div>  <!-- jumbotorn end -->
+
+  <div class="container">
+    <div class="page-header">
+      <h1>课程列表</h1>
+    </div>
+    {% if arg_class %}
+      {% for one in arg_class %}
+        <!-- {{ one['info'] }}<hr> -->
+        {{ one['title'] }}<hr>
+        <!-- {{ one['url'] }}<hr>
+        {{ one['id'] }}<hr>
+        {{ one['tag'] }}<hr>
+        {{ one['lesson_id'] }}<hr> -->
+      {% end %}
+    {% else %}
+      该课程暂未添加class课堂。
+    {% end %}
+  </div>
+
+
+
+  <div class="container">
+    <div class="page-header">
+      <h1>追加课程</h1>
+    </div>
+    {% if arg_lesson %}
+  <form method="post" action="">
+    {% raw xsrf_form_html() %}
+    <input value="{{ arg_lesson[0]['id'] }}" class="form-control" name="lessonid" type="hidden">
+    <div class="form-group">
+      <label>标题</label>
+      <input type="text" class="form-control" name="title" placeholder="本节课的标题" required>
+    </div>
+    <div class="form-group">
+      <label>课程提纲</label>
+      <input type="text" class="form-control" name="info" placeholder="本节课的提纲" required>
+    </div>
+    <div class="form-group">
+      <label>视频地址</label>
+      <input type="text" class="form-control" name="url" placeholder="视频源地址建议.mp4后缀" required>
+    </div>
+    <div class="form-group">
+      <label>标签</label>
+      <input type="text" class="form-control" name="tag" placeholder="使用一个合适的标签，如“基础课”、“经济学”" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">添加这节课</button>
+    </div>
+  </form>
+  {% else %}
+  <h1>未找到课程，无法添加课堂</h1>
+    <p>课程不存在，<br>请检查该课程编号</p>
+  {% end %}
+ </div>
+
+ <div class="container">
+   <ol class="breadcrumb">
+     <li><a href="/">管理首页</a></li>
+     <li><a href="/tlesson">课程管理</a></li>
+     <li class="active">添加课程（class）</li>
+   </ol>
+ </div>
+{% end %}
