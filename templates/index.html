@@ -147,6 +147,7 @@
     </div>
 
     <hr>
+    {% if not current_user %}
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
       使用本站的完整功能需要登录。
@@ -154,6 +155,7 @@
     <p class="text-center lead">
       <a href="/reg">注册</a> 或 <a href="/login">登录</a>，开始学习之旅。
     </p>
+    {% end %}
 
   </div>
 

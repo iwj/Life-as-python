@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+  <div class="jumbotron bing-bg" style="background-image: url( {{ static_url("image/bgrealwork.jpg")}} )">
+    <div class="container">
+      <h1>GrowtHub，<br>随时随地给自己充电。</h1>
+      <p>大学公开课</p>
+      <p>职业资格</p>
+      <p>金融理财</p>
+      <p>中小学</p>
+      <p>生活兴趣</p>
+      <p>外语学习</p>
+      <p>乐器</p>
+      <p><a class="btn btn-success btn-lg" href="#start" role="button">开始选课</a></p>
+    </div>
+  </div>
+
+
+
+  <div class="container" id="start">
+
+    <h1>选课</h1>
+    <div class="row">
+      <div class="col-md-12 lead">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>课程编号</th>
+                <th>代号</th>
+                <th>课程名称</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+          {% if arg_lesson %}
+          {% for lesson in arg_lesson %}
+              {% if lesson['id'] not in arg_added_list %}
+              <tr>
+                <td>{{ lesson['id'] }}</td>
+                <td>{{ lesson['name'] }}</td>
+                <td>{{ lesson['cnname'] }}</td>
+                <td>
+                  <form method="post" action="/addlesson">
+                    {% raw xsrf_form_html() %}
+                    <input type="hidden" value="{{lesson['id']}}" class="form-control" name="lesson_id">
+                    <input type="hidden" value="{{user_id}}" class="form-control" name="user_id">
+                    <button type="submit" class="btn btn-success">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% end %}
+          {% end %}
+          {% else %}
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <div class="alert alert-danger" role="alert">尚无任何课程，请联系老师或者网站管理员。</div>
+          {% end %}
+            </tbody>
+          </table>
+        </div>        <!-- table-responsive end-->
+      </div>      <!-- col-md-9 end -->
+
+    </div>    <!-- row end -->
+
+    <h1>已选课程</h1>
+    <div class="row">
+      <div class="col-md-12 lead">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>课程编号</th>
+                <th>代号</th>
+                <th>课程名称</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+          {% if arg_added_list %}
+          {% for lesson in arg_lesson %}
+              {% if lesson['id'] in arg_added_list %}
+              <tr>
+                <td>{{ lesson['id'] }}</td>
+                <td>{{ lesson['name'] }}</td>
+                <td>{{ lesson['cnname'] }}</td>
+                <td>
+                  <form method="post" action="/removelesson">
+                    {% raw xsrf_form_html() %}
+                    <input type="hidden" value="{{lesson['id']}}" class="form-control" name="lesson_id">
+                    <input type="hidden" value="{{user_id}}" class="form-control" name="user_id">
+                    <button type="submit" class="btn btn-danger">
+                      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% end %}
+          {% end %}
+          {% else %}
+          <tr>
+            <td>-</td><td>-</td><td>-</td><td>-</td>
+          </tr>
+          <div class="alert alert-danger" role="alert">尚未选课。</div>
+          {% end %}
+            </tbody>
+          </table>
+        </div>        <!-- table-responsive end-->
+      </div>      <!-- col-md-9 end -->
+
+    </div>    <!-- row end -->
+
+  </div>
+
+{% end %}

@@ -22,4 +22,7 @@ HANDLERS = [
         (r"/discover", DiscoverHandler),
         (r"/finance", FinanceHandler),
         (r"/error", ErrorHandler),
+        (r"/lesson", LessonHandler),
+        (r"/addlesson", AddHandler),
+        (r"/removelesson", RemoveHandler),
         ]

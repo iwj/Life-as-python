@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+  <div class="container">
+    <br>
+    <ol class="breadcrumb">
+      <li><a href="/">学乎首页</a></li>
+      <li><a href="/discover">全部课程</a></li>
+      <li class="active">课程详细信息</li>
+    </ol>
+  </div>
+
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          {% if status_code == -1 %}
+          <img class="show-img" src="">
+          {% else %}
+          <img class="show-img" src="{{ lesson_info[0]['coverurl'] }}">
+          {% end %}
+        </div>
+        <div class="col-md-6">
+          {% if status_code == -1 %}
+          <h2>未找到该课程，请检查课程编号</h2>
+          {% else %}
+          <h2>{{ lesson_info[0]['cnname'] }}
+            <small>{{ lesson_info[0]['name'] }}</small>
+          </h2>
+          <p>课程编号：{{ lesson_info[0]['id'] }}</p>
+          <p class="text-primary">课程介绍</p>
+          <p>首先，重点突出，非重点的繁杂内容很多都省去了，
+            其次是讲法更为简单好理解，并非是一打开就让人头晕目眩的复杂。
+            另外，讲课的顺序和很多国内的教材略有不同。本课程是先讲机理，
+            再运用机理理解有机物的反应，而不是将化合物分类中间掺插机理，
+            笔者认为本课程的讲法更有利理解记忆。</p>
+          {% end %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h1 class="panel-title lead">课时列表</h1>
+          </div>
+
+          <div class="panel-body">
+            {% if status_code == 1 %}
+              {% for one in class_info %}
+                <h4><a href="/study?id={{ one['id'] }}">
+                  <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                  {{ one['title'] }}
+                </a></h4>
+                <hr>
+               {% end %}
+             {% else %}
+             该课程尚未添加学习视频
+             {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <p class="text-primary lead">讲师介绍</p>
+        <p><img src="{{ lesson_info[0]['coverurl'] }}" alt="" class="img-thumbnail"></p>
+        <p>名称：Salman Khan</p>
+        <p>职业：数学教授</p>
+        <p>学位：哈佛大学工商管理硕士（MBA）</p>
+        <p>他从MIT获得了数学学士和电气工程和计算机科学学士，以及电气工程和计算机科学硕士，还从哈佛大学获得了一个工商管理硕士（MBA）学位。2009年辞去工作，专注于Khan Academy的教学传播事业。该机构获得2009年微软教育奖，2010年谷歌‘十的一百次方计划’教育项目的两百万美元资助。</p>
+        <hr>
+        <p class="text-primary lead">学院介绍</p>
+        <p>可汗学院(Khan Academy)，是由孟加拉裔美国人萨尔曼·可汗创立的一家教育性非营利组织，主旨在于利用网络影片进行免费授课，现有关于数学、历史、金融、物理、化学、生物、天文学等科目的内容，教学影片超过2000段，机构的使命是加快各年龄学生的学习速度。</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+{% end %}

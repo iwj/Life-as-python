@@ -10,13 +10,13 @@
       {% if arg %}
         {% for i in range(len(arg)) %}
           <div class="card">
-            <h3><a href="/read?id={{ arg[i]['id'] }}">{{ arg[i]["title"] }}</a></h3>
+            <h3><a href="/study?id={{ arg[i]['id'] }}">{{ arg[i]["title"] }}</a></h3>
             <div>分类：{{ arg[i]['tag'] }}</div>
           </div>
         {% end %}
         共{{ len(arg) }}条结果。
       {% else %}
-      没有找到相关的文章。
+      没有找到相关的课程。
       {% end %}
       用时{{ round(time,4) }}秒。
     </p>

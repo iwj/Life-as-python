@@ -4,28 +4,93 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>用户信息</h1>
+      <h1>个人中心</h1>
     </div>
-    <p>用户名：{{ arg_user["username"] }}</p>
-    <p>邮箱：{{ arg_user["email"] }}</p>
-    <p>昵称：{{ arg_user["nickname"] }}</p>
-    <p>注册时间：{{ arg_user["regtime"] }}</p>
-    <p>数字ID：{{ arg_user["id"] }}</p>
+    <div class="row">
+      <div class="col-md-3">
+        <p><span class="label label-info">UID</span> {{ arg_user["id"] }}</p>
+        <p><span class="label label-success">注册于</span> {{ arg_user["regtime"] }}</p>
+      </div>
+      <div class="col-md-9">
+        <p>用户名：{{ arg_user["username"] }}</p>
+        <p>邮箱：{{ arg_user["email"] }}</p>
+        <p>昵称：{{ arg_user["nickname"] }}</p>
+        <p>注册时间：{{ arg_user["regtime"] }}</p>
+        <br>
+      </div>
+    </div>
+
     <div class="page-header">
       <h1>已选课程</h1>
     </div>
-    {% if lesson_info_flag %}
     <div class="row">
       <div class="col-md-3">
-      {% for lesson in arg_lesson %}
-        <p class="text-primary">{{ lesson["cnname"] }}</p>
-        <img src="{{ lesson["coverurl"] }}" alt="..." class="img-thumbnail">
-      {% end %}
+        <p class="lead text-primary">接下来：</p>
+        <a class="btn btn-default" href="/addlesson" role="button">选课</a>
+        <a class="btn btn-success" href="/discover#studyrecord" role="button">继续学习</a>
+      </div>
+      <div class="col-md-9">
+        {% if arg_added_list %}
+        {% for lesson in arg_lesson %}
+            {% if lesson['id'] in arg_added_list %}
+            <div class="col-md-4">
+              <p><img src="{{ lesson["coverurl"] }}" alt="..." class="img-thumbnail"></p>
+              <p class="text-primary">
+                <a href="/lesson?lesson_id={{ lesson['id'] }}">{{ lesson["cnname"] }}</a>
+              </p>
+            </div>
+            {% end %}
+        {% end %}
+        {% else %}
+        <p class="lead">你还没有已选的课程。</p>
+        {% end %}
       </div>
     </div>
-    {% else %}
-    暂无课程，快去选课吧。
-    {% end %}
+
+
+
+    <div class="row">
+      <h1>课程表</h1><hr>
+      <div class="col-md-12 lead">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>课程编号</th>
+                <th>代号</th>
+                <th>课程名称</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+          {% if arg_added_list %}
+          {% for lesson in arg_lesson %}
+              {% if lesson['id'] in arg_added_list %}
+              <tr>
+                <td>{{ lesson['id'] }}</td>
+                <td>{{ lesson['name'] }}</td>
+                <td>{{ lesson['cnname'] }}</td>
+                <td>
+                  <a class="btn btn-success" href="/lesson?lesson_id={{ lesson['id'] }}" role="button">
+                    进入课堂
+                  </a>
+                </td>
+              </tr>
+              {% end %}
+          {% end %}
+          {% else %}
+          <tr>
+            <td>-</td><td>-</td><td>-</td><td>-</td>
+          </tr>
+          <div class="alert alert-danger" role="alert">尚未选课。</div>
+          {% end %}
+            </tbody>
+          </table>
+        </div>        <!-- table-responsive end-->
+      </div>      <!-- col-md-9 end -->
+
+    </div>
+
   </div>
 
 {% end %}

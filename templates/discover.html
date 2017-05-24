@@ -36,42 +36,42 @@
       </div>
       <p><a class="btn btn-primary btn-lg" href="#start" role="button">开始学习！</a></p>
     </div>
-    <div id="start"></div>
-    <div class="alert alert-info" role="alert">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-        小提示：喜欢的课程可以添加到“我的课程”，方便学习后续的课程以及复习。</div>
+    <div id="start"></div><div id="studyrecord"></div>
+      <div class="alert alert-info" role="alert">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          小提示：喜欢的课程可以添加到“我的课程”，方便学习后续的课程以及复习。
+      </div>
+
+
+      <div class="page-header">
+        <h1><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 学习记录</h1>
+      </div>
+
+      {% for rdone in arg_random %}
+        <p>
+          {{ rdone['title'] }}
+          <a href="/study?id={{ rdone['id'] }}"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> 播放</a>
+        </p>
+      {% end %}
+
     <div class="page-header">
-      <h1>课程内容</h1>
+      <h1><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 所有课程</h1>
     </div>
     <div class="row">
+      {% for i in arg_lesson %}
       <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">数学</h3>
-          </div>
-          <div class="panel-body">
-            {% for i in arg_math %}
-              <p> <a href="/study?id={{i['id']}}">{{ i['title'] }}</a></p>
-            {% end %}
-          </div>
-        </div>
-        <form method="post" action="/addlesson">
+        <p>
+          <img src="{{ i['coverurl'] }}" class="img-thumbnail">
+        </p>
+        <p class="text-center"><a href="/lesson?lesson_id={{i['id']}}">{{ i['cnname'] }}</a></p>
+        <br>
+      </div>
+      {% end %}
+        <!-- <form method="post" action="/addlesson">
           {% raw xsrf_form_html() %}
           选课
           <input type="hidden" name="lesson">
-        </form>
-      </div>
-      <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">英语</h3>
-          </div>
-          <div class="panel-body">
-            {% for i in range(5) %}
-              <p>课程 {{ i+1 }}</p>
-            {% end %}
-          </div>
-        </div>
+        </form> -->
       </div>
     </div>
   </div>

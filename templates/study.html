@@ -3,7 +3,7 @@
 {% block title %}
 
   {% if status_code==1 %}
-  {{ arg_main['title'] }} - GrowtHub
+    ▶ {{ arg_main['title'] }} - GrowtHub
   {% else %}
   错误
   {% end%}
@@ -39,6 +39,16 @@
           </video>
         </div>
         <div class="col-md-3">
+          <!-- <p class="text-primary lead">标签</p>
+          <a href="#" class="btn btn-default btn-lg disabled" role="button">基础课</a>
+          <a href="#" class="btn btn-default btn-lg disabled" role="button">
+            {% if status_code==1 %}
+            {{ arg_main['tag'] }}
+            {% else %}
+            未知课程
+            {% end%}
+          </a>
+          <hr> -->
           <p class="text-primary">课程信息</p>
           {% if status_code==1 %}
           {{ arg_main['info'] }}
@@ -55,23 +65,53 @@
 
     <div class="row">
       <div class="col-md-9">
-        <p class="text-primary">标签</p>
-        <a href="#" class="btn btn-default btn-lg disabled" role="button">基础课</a>
-        <a href="#" class="btn btn-default btn-lg disabled" role="button">
 
-          {% if status_code==1 %}
-          {{ arg_main['tag'] }}
-          {% else %}
-          未知课程
-          {% end%}
-        </a>
-        <hr>
-        <p class="text-primary">讨论区</p>
+        <div class="page-header">
+          <h1><small><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 相关推荐</small></h1>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+            <p>
+            <img src="http://7xshru.com1.z0.glb.clouddn.com/40aa.jpg" class="img-thumbnail">
+            </p>
+            <p class="text-center"><a href="/lesson?lesson_id=10004">现行经济状况</a></p>
+            <br>
+            </div>
+
+            <div class="col-md-3">
+            <p>
+            <img src="http://7xshru.com1.z0.glb.clouddn.com/2d87b.jpg" class="img-thumbnail">
+            </p>
+            <p class="text-center"><a href="/lesson?lesson_id=10003">基础化学</a></p>
+            <br>
+            </div>
+
+            <div class="col-md-3">
+            <p>
+            <img src="http://7xshru.com1.z0.glb.clouddn.com/20140925165414fcde2.jpg" class="img-thumbnail">
+            </p>
+            <p class="text-center"><a href="/lesson?lesson_id=10002">算术与代数预备课程：分数</a></p>
+            <br>
+            </div>
+
+            <div class="col-md-3">
+            <p>
+            <img src="http://7xshru.com1.z0.glb.clouddn.com/t/kh1.jpg" class="img-thumbnail">
+            </p>
+            <p class="text-center"><a href="/lesson?lesson_id=10001">数学2</a></p>
+            <br>
+        </div>
+
+</div>
+        <div class="page-header">
+          <h1><small><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 讨论区</small></h1>
+        </div>
+
       </div>
       <div class="col-md-3">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">相关课程</h3>
+            <h3 class="panel-title">后续章节</h3>
           </div>
           <div class="panel-body">
             {% if status_code==1 %}

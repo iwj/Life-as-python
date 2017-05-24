@@ -14,7 +14,7 @@
            {% if status_code == 1 %}
            <div class="alert alert-success" role="alert">注册完成，开始你的学习之旅吧！</div>
            {% end %}
-           <form method="post" action="">
+           <form method="post" action="/login">
               {% raw xsrf_form_html() %}
               <div class="form-group">
                 <label>用户名</label>
@@ -34,6 +34,5 @@
           </div>
         </div>
     </div>
-
 
 {% end %}
